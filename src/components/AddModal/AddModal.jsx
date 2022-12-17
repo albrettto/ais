@@ -5,6 +5,8 @@ import MyInput from '../UI/input/MyInput'
 import MySelect from '../UI/select/MySelect'
 import cl from './AddModal.module.css'
 import {ReactComponent as CloseSVG} from '../../icons/close.svg'
+import {ReactComponent as PlusSVG} from '../../icons/add.svg'
+
 
 
 
@@ -58,7 +60,8 @@ const AddModal = ({modal, setModal, create, genres, publishers, bookFormats}) =>
             type='text'
           />
 
-          <p className={cl.m}>Автор</p>
+          
+          <p className={cl.m}>Автор <span className={cl.addit}>(нескольких авторов вводить через запятую)</span></p>
           <MyInput
             value={author}
             onChange={e => setAuthor(e.target.value)}

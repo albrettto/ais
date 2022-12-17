@@ -55,4 +55,9 @@ export default class BookService {
     const response = await axios.get('http://localhost:5672/Order')
     return response.data
   }
+
+  static async searchBooks(search) {
+    const response = await axios.get('http://localhost:5672/Book/title/' + search)
+    return response.data
+  }
 }

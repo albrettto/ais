@@ -59,8 +59,8 @@ function App() {
     setGenres(genTransfer(genres.value))
     setBook(books.value)
     setOrders(orders.value)
-    console.log(orders.value)
-    console.log(books.value)
+    // console.log(orders.value)
+    // console.log(books.value)
   }
 
   const addModAdd = () => {
@@ -105,10 +105,26 @@ function App() {
     setPage(page)
   }
 
+  async function searchingBook(book) {
+    const books = await BookService.searchBooks(book)
+    setBook(books.value)
+  }
+
+  const search = (search) => {
+    if (search === ''){
+      fetchBooks()}
+    else{
+      searchingBook(search)
+      }
+    }
+
+
   return (
     <div className="App">
       <NavigationFirst fbMod={addModFB} choosePage={choosePage}/>
-      <NavigationSecond/>
+      <NavigationSecond
+        searching={search}
+      />
       <div className="container">
         <NavigationLeft choosePage={choosePage}/>
         <MainPage 

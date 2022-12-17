@@ -1,43 +1,41 @@
-import { Bar } from "react-chartjs-2";
-import config from "./config";
+import { Line } from "react-chartjs-2"
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Legend
+} from "chart.js"
 
-const options = {
-  scales: {
-    x: {
-      grid: {
-        display: false
-      }
-    },
+function Chart() {
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Legend
+  )
 
-    "left-y-axis": {
-      type: "linear",
-      position: "left",
-      grid: {
-        borderDash: [8, 6],
-        lineWidth: 2
-      },
-      ticks: {
-        maxTicksLimit: 6
+  const data = {
+    labels: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
+    datasets: [
+      {
+        label: "Items",
+        data: [400, 300, 350, 200, 280],
+        borderColor: "black",
+        backgroundColor: "white"
       }
-    },
-    "right-y-axis": {
-      type: "linear",
-      position: "right",
-      grid: {
-        display: false
-      },
-      ticks: {
-        callback: (v) => v + "%",
-        maxTicksLimit: 6
-      }
-    }
+    ]
   }
-};
-
-export default function App() {
   return (
-    <div className="App">
-      <Bar data={config} options={options} />
-    </div>
-  );
+    <Line
+      data={data}
+      options={{
+        responsive: true
+      }}
+    />
+  )
 }
+
+export default Chart

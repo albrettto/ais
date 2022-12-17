@@ -6,7 +6,7 @@
     margin-right: 10px;
     margin-left: 10px;
     margin-top: 10px;
-    border-bottom: #000000 1px solid;
+    border-bottom: #c1bebe 1px solid;
     margin-bottom: 20px;
 }
 
@@ -17,6 +17,10 @@
     margin-right: 60px;
     margin-top: 10px;
     margin-bottom: 10px;
+    font-size: large;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
 }
 
 .elem{
@@ -38,5 +42,5 @@
 .title{
     font-family: 'Montserrat';
     color: #000000;
-    margin-left: 25px;
+    margin-left: 35px;
 }
