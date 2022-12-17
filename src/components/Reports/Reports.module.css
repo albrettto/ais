@@ -1,0 +1,15 @@
+.loc{
+    justify-content: center;
+    align-items: center;
+    padding-left:220px;
+    padding-top: 20px;
+    padding-right: 40px;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    padding-bottom: 20px;
+}

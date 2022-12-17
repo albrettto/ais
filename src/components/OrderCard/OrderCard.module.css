@@ -1,0 +1,42 @@
+.row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-bottom: #000000 1px solid;
+    margin-bottom: 20px;
+}
+
+.rez{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-right: 60px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.elem{
+    width: 100%;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.loc{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    margin-left: 30px;
+    margin-top: 15px;
+
+}
+
+.title{
+    font-family: 'Montserrat';
+    color: #000000;
+    margin-left: 25px;
+}

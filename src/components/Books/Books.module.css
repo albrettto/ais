@@ -1,0 +1,45 @@
+.loc{
+   padding-left:220px;
+   padding-top: 10px;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sort{
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   margin-right: 25px;
+}
+
+.icon{
+   margin-right: 15px;
+}
+
+.sortTxt{
+   width: auto;
+}
+
+.noBooks{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 50px;
+   font-size: large;
+
+
+   font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 130.9%;
+    /* or 47px */
+
+    letter-spacing: 0.055em;
+
+    color: #000000;
+}

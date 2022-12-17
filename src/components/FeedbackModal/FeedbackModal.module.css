@@ -1,0 +1,19 @@
+.m{
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.grText{
+    margin-top: 5px;
+    color: gray;
+    font-size: small;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}

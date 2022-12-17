@@ -1,0 +1,51 @@
+.myBtn {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    background: transparent;
+    border:none;
+    align-items: center;
+}
+
+.myBtn.btn{
+    border: 1px solid;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+}
+
+.myBtn.btn:hover{
+    color: #fff;
+    background-color: gray;
+    transition: all 0.4s ease;
+}
+
+.myBtn.leftBtn{
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    padding: 10px 25px;
+}
+
+.myBtn.leftBtn:hover{
+    background: #4A83F6;
+    margin-left: 15px;
+    transition: all 0.4s ease;
+}
+
+.myBtn.searchBtn{
+    border: 1px solid;
+    border-radius: 12px;
+    color: white;
+    background-color: black;
+    height: 46px;
+}
+
+.myBtn.navBtn{
+    padding: 10px 10px;
+    ;
+}
+
+.myBtn.close{
+    padding: 10px 0px;
+}

@@ -1,0 +1,33 @@
+.loc{
+    justify-content: center;
+    align-items: center;
+    padding-left:220px;
+    padding-top: 20px;
+    padding-right: 40px;
+ }
+ 
+ .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.noOrders{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    font-size: large;
+ 
+ 
+    font-family: 'Montserrat';
+     font-style: normal;
+     font-weight: 700;
+     font-size: 36px;
+     line-height: 130.9%;
+     /* or 47px */
+ 
+     letter-spacing: 0.055em;
+ 
+     color: #000000;
+ }

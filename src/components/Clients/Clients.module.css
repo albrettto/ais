@@ -1,0 +1,53 @@
+.loc{
+    justify-content: center;
+    align-items: center;
+    padding-left:220px;
+    padding-top: 20px;
+    padding-right: 40px;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.card{
+    width: 100%;
+    border: #000 solid 1px;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 25px;
+    margin: 10px;
+    margin-bottom: 30px;
+    justify-content:flex-start;
+    align-items: center;
+    display: flex;
+}
+
+.pic{
+    width: 100px;
+    height: 100px;
+    margin-right: 40px;
+    margin-left: 20px;
+}
+
+.cent{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.caption{
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    padding-bottom: 20px;
+}
+
+.addres{
+    color: #000;
+    padding-bottom: 20px;
+}
