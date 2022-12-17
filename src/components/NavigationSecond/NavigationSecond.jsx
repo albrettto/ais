@@ -4,10 +4,10 @@ import MyInput from '../UI/input/MyInput'
 import MyNav from '../UI/nav/MyNav'
 import cl from './NavigationSecond.module.css'
 
-const NavigationSecond = () => {
+const NavigationSecond = ({searching}) => {
 
     const [searchQuery, setSearchQuery] = useState('')
-
+    
   return (
         <MyNav type={'second'}>
             <div className={cl.loc}>
@@ -18,7 +18,7 @@ const NavigationSecond = () => {
                     onChange={e => setSearchQuery(e.target.value)}
                     type='search' 
                     variant={'search'}/>
-                    <MyButton variant={'searchBtn'}>ПОИСК</MyButton>
+                    <MyButton variant={'searchBtn'} onClick={() => searching(searchQuery)}>ПОИСК</MyButton>
                 </div>
             </div>
         </MyNav>
