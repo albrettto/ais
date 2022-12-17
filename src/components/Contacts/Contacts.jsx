@@ -1,7 +1,7 @@
 import React from 'react'
 import cl from './Contacts.module.css'
 
-import TeaBag from '../../images/teabag.png'
+import TeaBag from '../../images/teabag1.png'
 
 
 const Contacts = ({}) => {

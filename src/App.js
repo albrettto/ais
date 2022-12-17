@@ -23,6 +23,9 @@ function App() {
   useEffect(() => {
     fetchBooks()
   }, [])
+  useEffect(() => {
+    fetchOrders()
+  }, [])
 
   function genTransfer (genres){
     const gen = []
@@ -53,14 +56,15 @@ function App() {
     const genres = await BookService.getGenres()
     const publishers = await BookService.getPublishers()
     const bookFormats = await BookService.getBookFormat()
-    const orders = await BookService.getOrders()
     setBookFormats(bookFormTransfer(bookFormats.value))
     setPublishers(publTransfer(publishers.value))
     setGenres(genTransfer(genres.value))
     setBook(books.value)
+  }
+
+  async function fetchOrders(){
+    const orders = await BookService.getOrders()
     setOrders(orders.value)
-    // console.log(orders.value)
-    // console.log(books.value)
   }
 
   const addModAdd = () => {
@@ -118,12 +122,17 @@ function App() {
       }
     }
 
+    const changeSearch = (query) =>{
+       fetchBooks() 
+    }
+
 
   return (
     <div className="App">
       <NavigationFirst fbMod={addModFB} choosePage={choosePage}/>
       <NavigationSecond
         searching={search}
+        change={changeSearch}
       />
       <div className="container">
         <NavigationLeft choosePage={choosePage}/>

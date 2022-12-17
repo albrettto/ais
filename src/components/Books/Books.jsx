@@ -3,8 +3,8 @@ import MyButton from '../UI/button/MyButton'
 import MySelect from '../UI/select/MySelect'
 import BookCard from '../BookCard/BookCard'
 import cl from './Books.module.css'
-import {ReactComponent as AddSVG} from 'D:/ProjectAIS/ais/src/icons/add.svg'
-import {ReactComponent as FilterSVG} from 'D:/ProjectAIS/ais/src/icons/filter.svg'
+import {ReactComponent as AddSVG} from '../../icons/add.svg'
+import {ReactComponent as FilterSVG} from '../../icons/filter.svg'
 
 
 const Books = ({addMod, newBook, remove, sorting}) => {
@@ -25,7 +25,6 @@ const Books = ({addMod, newBook, remove, sorting}) => {
                 </MyButton>
                 <div className={cl.row}>
                     <div className={cl.sort}>
-                        {/* <p className={cl.sortTxt}>Сортировать по: </p> */}
                         <MySelect
                             type={'sort'}
                             value={selectedSort}

@@ -18,12 +18,12 @@ function Chart() {
   )
 
   const data = {
-    labels: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
+    labels: ["2023-01-01", "2023-02-01", "2023-03-01", "2023-04-01"],
     datasets: [
       {
-        label: "Items",
-        data: [400, 300, 350, 200, 280],
-        borderColor: "black",
+        label: "Книга",
+        data: [62017, 52105, 48081, 49345],
+        borderColor: "red",
         backgroundColor: "white"
       }
     ]
