@@ -81,6 +81,7 @@ function App() {
   async function fetchBooks(){
     const books = await BookService.getAll() 
     setBook(books.value)
+    console.log(books.value)
   }
 
   async function fetchGenres(){
@@ -114,13 +115,8 @@ function App() {
     setFeedbackModal(true)
   }
 
-  async function createBook(book) {
-    await BookService.create(book)
-  }
-
   const addBook = (newBook) => {
     setBook([...book, newBook])
-    const resp = createBook(newBook)
     setAddModal(false)
   }
 
@@ -138,7 +134,7 @@ function App() {
       setBook([...book].sort((a, b) => a[sort] - b[sort]))
     }
     else if (sort === 'authors'){
-      setBook([...book].sort((a, b) => a[sort][0].firstName.localeCompare(b[sort][0].firstName)))
+      setBook([...book].sort((a, b) => a[sort][0].lastName.localeCompare(b[sort][0].lastName)))
     }
     else
       setBook([...book].sort((a, b) => a[sort].localeCompare(b[sort])))

@@ -2,8 +2,10 @@ import React, {useState} from 'react'
 import MyModal from '../UI/MyModal/MyModal'
 import MyButton from '../UI/button/MyButton'
 import MyInput from '../UI/input/MyInput'
-import SmartSelect from '../UI/select/SmartSelect'
+import Select from "react-select";
 import cl from './AddModal.module.css'
+import BookService from '../../API/BookService';
+
 import {ReactComponent as CloseSVG} from '../../icons/close.svg'
 
 
@@ -12,36 +14,34 @@ import {ReactComponent as CloseSVG} from '../../icons/close.svg'
 
 const AddModal = ({modal, setModal, create, genres, publishers, bookFormats, authors}) => {
 
+  const [selectedAuth, setSelectedAuth] = useState('')
   const [selectedPubl, setSelectedPubl] = useState('')
   const [selectedForm, setSelectedForm] = useState('')
   const [selectedGenre, setSelectedGenre] = useState('')
-  // const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  // const [date, setDate] = useState('')
-  // const [isbn, setIsbn] = useState('')
-  // const [count, setCount] = useState('')
-  // const [price, setPrice] = useState('')
   const [book, setBook] = useState([])
 
-  const addNewBook = (e) => {
-    console.log(book);
-    const lNfN = author.split(' ')
-    e.preventDefault()
+  const addNewBook = () => {
     const newBook = {
-      id: Date.now(),
-      publisherName: selectedPubl,
-      bookFormat: selectedForm,
-      genre: selectedGenre,
-      authors: [{lastName: lNfN[0], firstName: lNfN[1]}],
+      publisherId: selectedPubl.value,
+      formatId: selectedForm.value,
+      genreId: selectedGenre.value,
+      authors: selectedAuth.map(author => {return author.value}),
       ...book
     }
+    createBook(newBook)
+    create({
+      id: Date.now(),
+      publisherId: selectedPubl.label,
+      formatId: selectedForm.label,
+      genreId: selectedGenre.label,
+      authors: selectedAuth.map(author => {return author.label}),
+      ...book
+    })
     console.log(newBook);
-    create(newBook)
-    setSelectedForm('')
-    setSelectedGenre('')
-    setSelectedPubl('')
-    setAuthor('')
-    setBook({ title: '', authors: [], publisherName: '', genre: '', bookFormat: '', publicationDate: '', isbn: '', quantity: '', price: '' })
+  }
+
+  async function createBook(book) {
+    await BookService.create(book)
   }
   
   return (
@@ -62,50 +62,33 @@ const AddModal = ({modal, setModal, create, genres, publishers, bookFormats, aut
 
           
           <p className={cl.m}>Автор</p>
-          <SmartSelect
-            value={selectedGenre}
-            onChange={setSelectedGenre}
+          <Select
+            value={selectedAuth}
+            onChange={setSelectedAuth}
             placeholder='Выберите автора(-ов)'
             options={authors}
             isSearchable={true}
             isMulti={true}
             variant={'smart'}
           />
-          {/* <MyInput
-            value={author}
-            onChange={e => setAuthor(e.target.value)}
-            type='text'
-          /> */}
 
           <p className={cl.m}>Издательство</p>
-          <SmartSelect
+          <Select
             value={selectedPubl}
             onChange={setSelectedPubl}
             placeholder='Выберите издательство'
             options={publishers}
             isSearchable={true}
           />
-          {/* <MySelect
-            value={selectedPubl}
-            onChange={setSelectedPubl}
-            defaultValue='Выберите издательство'  
-            options={publishers}
-          /> */}
 
           <p className={cl.m}>Жанр</p>
-          <SmartSelect
+          <Select
             value={selectedGenre}
             onChange={setSelectedGenre}
             placeholder='Выберите жанр'
             options={genres}
             isSearchable={true}
           />
-          {/* <MySelect
-            value={selectedGenre}
-            onChange={setSelectedGenre}
-            defaultValue='Выберите жанр'
-            options={genres}
-          /> */}
 
           <p className={cl.m}>Дата публикации</p>
           <MyInput
@@ -115,19 +98,13 @@ const AddModal = ({modal, setModal, create, genres, publishers, bookFormats, aut
           />
 
           <p className={cl.m}>Формат книги</p>
-          <SmartSelect
+          <Select
             value={selectedForm}
             onChange={setSelectedForm}
             placeholder='Выберите формат книги'
             options={bookFormats}
             isSearchable={true}
           />
-          {/* <MySelect
-            value={selectedForm}
-            onChange={setSelectedForm}
-            defaultValue='Выберите формат книги'
-            options={bookFormats}
-          /> */}
 
           <p className={cl.m}>ISBN</p>
           <MyInput
@@ -139,14 +116,14 @@ const AddModal = ({modal, setModal, create, genres, publishers, bookFormats, aut
           <p className={cl.m}>Количество</p>
           <MyInput
             value={book.quantity}
-            onChange={e => setBook({...book, quantity: e.target.value})}
+            onChange={e => setBook({...book, quantity: parseInt(e.target.value)})}
             type='number'
           />
 
           <p className={cl.m}>Цена</p>
           <MyInput
             value={book.price}
-            onChange={e => setBook({...book, price: e.target.value})}
+            onChange={e => setBook({...book, price: parseInt(e.target.value)})}
             type='number'
           />
           <div className={cl.m}>

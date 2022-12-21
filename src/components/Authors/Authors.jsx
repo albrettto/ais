@@ -4,7 +4,7 @@ const Authors = (props) => {
 
   return (
         <div>
-            <span>{props.authors.firstName} {props.authors.lastName.slice(0,1)}.</span>
+            <span>{props.authors.lastName} {props.authors.firstName.slice(0,1)}.</span>
         </div>
   )
 }

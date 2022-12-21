@@ -5,7 +5,7 @@ import cl from './Forecasts.module.css'
 import MyInput from '../UI/input/MyInput';
 import MyButton from '../UI/button/MyButton';
 
-import SmartSelect from '../UI/select/SmartSelect';
+import Select from "react-select";
 
 const Forecasts = ({books}) => {
 
@@ -44,12 +44,12 @@ const Forecasts = ({books}) => {
             <h1 className={cl.title}>Прогнозы</h1> 
             <div className={cl.row}>
                 <div className={cl.b}>
-                    <SmartSelect
+                    <Select
                         options={book}
                         placeholder='Выберите книгу'
                         value={selectedOptions}
+                        onChange={getChanges}
                         isSearchable={true}
-                        getChanges={getChanges}
                     />
                 </div>
                 

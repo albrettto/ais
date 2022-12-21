@@ -67,9 +67,7 @@ export default class BookService {
   }
 
   static async getForecasts(isbn, date) {
-    const t = 'http://localhost:5672/Order/' + isbn + '/' + date
-    console.log(t)
-    const response = await axios.get(t)
+    const response = await axios.get('http://localhost:5672/Order/' + isbn + '/' + date)
     return response.data
   }
     

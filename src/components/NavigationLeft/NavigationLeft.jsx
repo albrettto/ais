@@ -31,11 +31,11 @@ const NavigationLeft = (props) => {
                      Поставщики
                 </MyButton>
             </li>
-            <li><MyButton variant={'leftBtn'} onClick={() => props.choosePage('reports')}> 
+            {/* <li><MyButton variant={'leftBtn'} onClick={() => props.choosePage('reports')}> 
                     <ReportsSVG className={cl.icon}/>
                     Отчёты
                 </MyButton>
-            </li>
+            </li> */}
             <li><MyButton variant={'leftBtn'} onClick={() => props.choosePage('forecasts')}>
                     <GraphSVG className={cl.icon}/>
                     Прогнозы
