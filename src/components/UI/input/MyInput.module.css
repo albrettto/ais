@@ -22,3 +22,8 @@
     cursor: pointer;
     background-color: #fff;
 }
+
+.myInput.date{
+    width: 200px;
+    margin-left: 20px;
+}

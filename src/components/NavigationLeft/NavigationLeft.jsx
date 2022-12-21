@@ -8,6 +8,7 @@ import {ReactComponent as GraphSVG} from '../../icons/graph.svg'
 import {ReactComponent as ReportsSVG} from '../../icons/reports.svg'
 import {ReactComponent as ClientsSVG} from '../../icons/clients.svg'
 
+
 const NavigationLeft = (props) => {
 
     

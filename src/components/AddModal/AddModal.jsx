@@ -2,15 +2,15 @@ import React, {useState} from 'react'
 import MyModal from '../UI/MyModal/MyModal'
 import MyButton from '../UI/button/MyButton'
 import MyInput from '../UI/input/MyInput'
-import MySelect from '../UI/select/MySelect'
+import SmartSelect from '../UI/select/SmartSelect'
 import cl from './AddModal.module.css'
 import {ReactComponent as CloseSVG} from '../../icons/close.svg'
-import {ReactComponent as PlusSVG} from '../../icons/add.svg'
 
 
 
 
-const AddModal = ({modal, setModal, create, genres, publishers, bookFormats}) => {
+
+const AddModal = ({modal, setModal, create, genres, publishers, bookFormats, authors}) => {
 
   const [selectedPubl, setSelectedPubl] = useState('')
   const [selectedForm, setSelectedForm] = useState('')
@@ -61,28 +61,51 @@ const AddModal = ({modal, setModal, create, genres, publishers, bookFormats}) =>
           />
 
           
-          <p className={cl.m}>Автор <span className={cl.addit}>(нескольких авторов вводить через запятую)</span></p>
-          <MyInput
+          <p className={cl.m}>Автор</p>
+          <SmartSelect
+            value={selectedGenre}
+            onChange={setSelectedGenre}
+            placeholder='Выберите автора(-ов)'
+            options={authors}
+            isSearchable={true}
+            isMulti={true}
+            variant={'smart'}
+          />
+          {/* <MyInput
             value={author}
             onChange={e => setAuthor(e.target.value)}
             type='text'
-          />
+          /> */}
 
           <p className={cl.m}>Издательство</p>
-          <MySelect
+          <SmartSelect
+            value={selectedPubl}
+            onChange={setSelectedPubl}
+            placeholder='Выберите издательство'
+            options={publishers}
+            isSearchable={true}
+          />
+          {/* <MySelect
             value={selectedPubl}
             onChange={setSelectedPubl}
             defaultValue='Выберите издательство'  
             options={publishers}
-          />
+          /> */}
 
           <p className={cl.m}>Жанр</p>
-          <MySelect
+          <SmartSelect
+            value={selectedGenre}
+            onChange={setSelectedGenre}
+            placeholder='Выберите жанр'
+            options={genres}
+            isSearchable={true}
+          />
+          {/* <MySelect
             value={selectedGenre}
             onChange={setSelectedGenre}
             defaultValue='Выберите жанр'
             options={genres}
-          />
+          /> */}
 
           <p className={cl.m}>Дата публикации</p>
           <MyInput
@@ -92,12 +115,19 @@ const AddModal = ({modal, setModal, create, genres, publishers, bookFormats}) =>
           />
 
           <p className={cl.m}>Формат книги</p>
-          <MySelect
+          <SmartSelect
+            value={selectedForm}
+            onChange={setSelectedForm}
+            placeholder='Выберите формат книги'
+            options={bookFormats}
+            isSearchable={true}
+          />
+          {/* <MySelect
             value={selectedForm}
             onChange={setSelectedForm}
             defaultValue='Выберите формат книги'
             options={bookFormats}
-          />
+          /> */}
 
           <p className={cl.m}>ISBN</p>
           <MyInput

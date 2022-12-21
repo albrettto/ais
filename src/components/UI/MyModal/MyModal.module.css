@@ -13,10 +13,14 @@
     background: white;
     border-radius: 12px;
     min-width: 500px;
+    max-width: 500px;
+    max-height: 1000px;
 }
 
 .myModal.active {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* добавить скроллинг при увеличении размера экрана */
+    overflow: auto;
 }

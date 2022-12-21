@@ -2,6 +2,7 @@ import React from 'react'
 import cl from './Contacts.module.css'
 
 import TeaBag from '../../images/teabag1.png'
+import Loader from '../Loader/Loader'
 
 
 const Contacts = ({}) => {
@@ -22,6 +23,7 @@ const Contacts = ({}) => {
                 </div>
                 <img src={TeaBag} alt="" className={cl.pic}/>
             </div>
+            <Loader width={100} height={100}/>
         </div>
   )
 }

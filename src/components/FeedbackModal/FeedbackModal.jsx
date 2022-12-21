@@ -3,6 +3,7 @@ import MyModal from '../UI/MyModal/MyModal'
 import MyButton from '../UI/button/MyButton'
 import MyInput from '../UI/input/MyInput'
 import cl from './FeedbackModal.module.css'
+import { CFormTextarea } from '@coreui/react'
 import {ReactComponent as CloseSVG} from '../../icons/close.svg'
 
 
@@ -21,7 +22,7 @@ const FeedbackModal = ({modal, setModal}) => {
             <p className={cl.grText}>Мы никому не расскажем о нем</p>
           <p className={cl.m}>Ваш отзыв/вопрос/жалоба</p>
           <MyInput  
-            type="textarea"
+            type="textarea"  
           />
           <div className={cl.m}>
             <MyButton variant={'btn'}>Отправить</MyButton>

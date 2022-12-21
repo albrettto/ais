@@ -1,0 +1,112 @@
+.eL3bAhDGSR81{
+    position: absolute;
+    top: 30%;
+    left: 45%;
+    opacity: 0.5;
+    }
+
+.eL3bAhDGSR86_to{
+    animation: eL3bAhDGSR86_to__to 3000ms linear infinite normal forwards
+}
+
+@keyframes eL3bAhDGSR86_to__to { 
+    0% {
+        transform: translate(1745px,5405px)
+    } 
+    50% {
+        transform: translate(1745px,5090px)
+    } 
+    100% {
+        transform: translate(1745px,5405px)
+    }
+} 
+
+
+
+.eL3bAhDGSR86_ts {
+    animation: eL3bAhDGSR86_ts__ts 3000ms linear infinite normal forwards
+}
+
+@keyframes eL3bAhDGSR86_ts__ts { 
+    0% {
+        transform: scale(1,1)
+    } 
+    50% {
+        transform: scale(1,2)
+    } 
+    100% {
+        transform: scale(1,1)
+    }
+} 
+
+
+
+.eL3bAhDGSR87_to {
+    animation: eL3bAhDGSR87_to__to 3000ms linear infinite normal forwards
+}
+
+@keyframes eL3bAhDGSR87_to__to { 
+    0% {
+        transform: translate(4195px,4369.373779px)
+    } 
+    50% {
+        transform: translate(4195px,4639.499019px)
+    } 
+    100% {
+        transform: translate(4195px,4369.373779px)
+    }
+} 
+
+
+
+.eL3bAhDGSR87_ts {
+    animation: eL3bAhDGSR87_ts__ts 3000ms linear infinite normal forwards
+}
+
+@keyframes eL3bAhDGSR87_ts__ts { 
+    0% {
+        transform: scale(1,1)
+    } 
+    50% {
+        transform: scale(1,0.8)
+    } 
+    100% {
+        transform: scale(1,1)
+    }
+} 
+
+
+
+.eL3bAhDGSR88_to {
+    animation: eL3bAhDGSR88_to__to 3000ms linear infinite normal forwards
+}
+
+@keyframes eL3bAhDGSR88_to__to { 
+    0% {
+        transform: translate(1745.5px,3285px)
+    } 
+    50% {
+        transform: translate(1745.5px,2685px)
+    } 
+    100% {
+        transform: translate(1745.5px,3285px)
+    }
+} 
+
+
+
+.eL3bAhDGSR814_to {
+    animation: eL3bAhDGSR814_to__to 3000ms linear infinite normal forwards
+}
+
+@keyframes eL3bAhDGSR814_to__to { 
+    0% {
+        transform: translate(4190.597412px,2375px)
+    } 
+    50% {
+        transform: translate(4190.597412px,2975px)
+    } 
+    100% {
+        transform: translate(4190.597412px,2375px)
+    }
+}

@@ -25,7 +25,9 @@ const MainPage = (props) => {
         else if(props.page === 'reports')
             return <Reports/>
         else if(props.page === 'forecasts')
-            return <Forecasts/>
+            return <Forecasts
+                books={props.newBook} 
+            />
         else if(props.page === 'clients')
             return <Clients/>
         else if(props.page === 'contacts')
