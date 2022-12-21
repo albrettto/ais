@@ -51,6 +51,11 @@ export default class BookService {
     return response.data
   }
 
+  static async getAuthors() {
+    const response = await axios.get('http://localhost:5672/Author')
+    return response.data
+  }
+
   static async getOrders() {
     const response = await axios.get('http://localhost:5672/Order')
     return response.data
@@ -60,4 +65,12 @@ export default class BookService {
     const response = await axios.get('http://localhost:5672/Book/title/' + search)
     return response.data
   }
+
+  static async getForecasts(isbn, date) {
+    const t = 'http://localhost:5672/Order/' + isbn + '/' + date
+    console.log(t)
+    const response = await axios.get(t)
+    return response.data
+  }
+    
 }
