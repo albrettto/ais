@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import Chart from '../Chart'
 import BookService from '../../API/BookService';
 import cl from './Forecasts.module.css'
 import MyInput from '../UI/input/MyInput';
 import MyButton from '../UI/button/MyButton';
+import {ReactComponent as BooksSVG} from '../../icons/books.svg'
 
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Select from "react-select";
 
 const Forecasts = ({books}) => {
@@ -13,13 +14,11 @@ const Forecasts = ({books}) => {
     const [book, setBook] = React.useState([])
     const [selectedOptions, setSelectedOptions] = useState();
     const [date, setDate] = React.useState('')
+    
 
     async function fetchForecast(isbn, date){
-        console.log(isbn)
-        console.log(date);
         const forc = await BookService.getForecasts(isbn, date)
-        setForecast(forc.value)
-        console.log(forecast)
+        setForecast(transformDate(forc.value))
     }
 
     function getBooks(){
@@ -30,14 +29,46 @@ const Forecasts = ({books}) => {
         setBook(b)
     }
 
-      const getChanges = (data) => {
+    function transformDate(dat){
+        const glos = []
+        for (let i = 0; i < dat.length; i++) {
+            glos.push({date: dat[i].date.slice(0,7), forecastedValues: dat[i].forecastedValues})
+        }
+        return glos
+    }
+
+    const getChanges = (data) => {
         setSelectedOptions(data);
-        console.log(data);
       }
 
     useEffect(() => {
         getBooks()
     }, [])
+
+    const getIntroOfPage = (label) => {
+        if (label === '2023-01' || label === '2023-02' || label === '2023-03' || label === '2023-04') {
+          return "Прогнозируемое количество книг на " + label;
+        }
+        else {
+          return "Количество проданных книг";
+        }
+      };
+
+    const CustomTooltip = ({ active, payload, label }) => {
+        if (active && payload && payload.length) {
+          return (
+            <div className="custom-tooltip"> 
+            <div className={cl.tool}>
+                <BooksSVG/> 
+              <p className="label">{payload[0].value} штук</p>
+            </div>
+              <p className="intro">{getIntroOfPage(label)}</p>
+            </div>
+          );
+        }
+      
+        return null;
+      };
 
     return (
         <div className={cl.loc}>
@@ -63,8 +94,42 @@ const Forecasts = ({books}) => {
                 />
                 <MyButton variant={'result'} onClick={() => fetchForecast(selectedOptions.value, date)}>Получить прогноз</MyButton>
             </div>
+                {
+                    forecast != null 
+                    ?
+                        forecast[forecast.length-1].forecastedValues != 0
+                        ?
+                        <BarChart
+                            width={1700}
+                            height={700}
+                            data={forecast}
+                            margin={{
+                                top: 50,
+                                right: 50,
+                                left: 50,
+                                bottom: 5
+                            }}
+                            >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date" />
+                            <YAxis />
+                            <Tooltip content={<CustomTooltip />} wrapperStyle={{background: '#ffffff', border:'#000 solid 1px', borderRadius:'5px', padding:'10px'}} />
+                            <Bar dataKey="forecastedValues" barSize={50}>
+                                {
+                                forecast.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={index < forecast.length-4 ? 'blue' : 'orange'}/>
+                                ))
+                                }
+                            </Bar>
+                        </BarChart>
+                        :
+                        <div>
+                            <h1 className={cl.noData}>Не хватает данных</h1>
+                        </div>
+                    :
+                    <div/>
+                }
 
-            {/* <Chart /> */}
         </div>
   )
 }

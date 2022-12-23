@@ -1,0 +1,25 @@
+.myOffCanvas {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: none;
+    justify-content: end;
+    align-items: center;
+}
+
+.myOffCanvasContent{
+    background: white;
+    width: 30%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.myOffCanvas.active {
+    display: flex;
+}

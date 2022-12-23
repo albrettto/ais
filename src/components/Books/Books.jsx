@@ -2,14 +2,16 @@ import React,{useState} from 'react'
 import MyButton from '../UI/button/MyButton'
 import MySelect from '../UI/select/MySelect'
 import BookCard from '../BookCard/BookCard'
+import MyCheckbox from '../UI/checkbox/MyCheckbox'
 import cl from './Books.module.css'
 import {ReactComponent as AddSVG} from '../../icons/add.svg'
 import {ReactComponent as FilterSVG} from '../../icons/filter.svg'
 
 
-const Books = ({addMod, newBook, remove, sorting}) => {
+const Books = ({addMod, newBook, remove, sorting, genres}) => {
 
     const [selectedSort, setSelectedSort] = useState('')
+    const [isCollapsed, setIsCollapsed] = useState(true)
 
     const sortBooks = (sort) => {
         setSelectedSort(sort)
@@ -38,11 +40,18 @@ const Books = ({addMod, newBook, remove, sorting}) => {
                             ]}
                         />
                     </div>
-                    <MyButton>
+                    <MyButton onClick={() => setIsCollapsed(!isCollapsed)}>
                         <FilterSVG className={cl.icon}/>
                     </MyButton>
                 </div>
             </div>
+            {!isCollapsed && (
+                        <div className={cl.right}>
+                            <p>Жанры</p>
+                            {genres.map(genre => 
+                                <MyCheckbox label={genre.label}/>)}
+                        </div>
+                    )}
             {newBook.length === 0
                 ? 
                 <div className={cl.noBooks}>

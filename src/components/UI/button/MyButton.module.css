@@ -10,14 +10,10 @@
 .myBtn.btn{
     border: 1px solid;
     border-radius: 12px;
-    transition: all 0.4s ease;
+    background-color: #4A83F6;
+    color: white;
 }
 
-.myBtn.btn:hover{
-    color: #fff;
-    background-color: gray;
-    transition: all 0.4s ease;
-}
 
 .myBtn.leftBtn{
     display: flex;
@@ -43,7 +39,6 @@
 
 .myBtn.navBtn{
     padding: 10px 10px;
-    ;
 }
 
 .myBtn.close{
@@ -55,11 +50,17 @@
     margin-left: 20px;
     border: 1px solid;
     border-radius: 5px;
-    transition: all 0.4s ease;
-}
-
-.myBtn.result:hover{
     background-color: #4A83F6;
     color: white;
-    transition: all 0.4s ease;
 }
+
+.myBtn.cart{
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: 1px solid;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    background: #4A83F6;
+    color: aliceblue;
+}
+

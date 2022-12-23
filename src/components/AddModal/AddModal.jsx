@@ -8,11 +8,7 @@ import BookService from '../../API/BookService';
 
 import {ReactComponent as CloseSVG} from '../../icons/close.svg'
 
-
-
-
-
-const AddModal = ({modal, setModal, create, genres, publishers, bookFormats, authors}) => {
+const AddModal = ({modal, setModal, genres, publishers, bookFormats, authors}) => {
 
   const [selectedAuth, setSelectedAuth] = useState('')
   const [selectedPubl, setSelectedPubl] = useState('')
@@ -29,15 +25,7 @@ const AddModal = ({modal, setModal, create, genres, publishers, bookFormats, aut
       ...book
     }
     createBook(newBook)
-    create({
-      id: Date.now(),
-      publisherId: selectedPubl.label,
-      formatId: selectedForm.label,
-      genreId: selectedGenre.label,
-      authors: selectedAuth.map(author => {return author.label}),
-      ...book
-    })
-    console.log(newBook);
+    setModal(false)
   }
 
   async function createBook(book) {

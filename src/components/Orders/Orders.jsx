@@ -9,7 +9,7 @@ const Orders = ({newOrder}) => {
     return (
         <div className={cl.loc}>
 
-            {newOrder.length === 0
+            {newOrder === 'There is no Orders in repository'
                 ? 
                 <div className={cl.noOrders}>
                     <p>Заказы отсутствуют</p>

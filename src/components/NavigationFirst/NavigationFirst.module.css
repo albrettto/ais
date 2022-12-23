@@ -20,6 +20,17 @@
     margin-left: 20px;
 }
 
-.icon{
+.content {
+    
+    align-items: center;
+    margin: 0 20px;
+}
+
+.total{
+    margin-top: 15px;
+    text-align: end;
+    /* Сделать текст пожирнее и крупнее */
+    font-size: 20px;
+    font-weight: 600;
     
 }

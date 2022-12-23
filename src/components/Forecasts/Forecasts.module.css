@@ -25,3 +25,18 @@
 .b{
     width: 300px;
 }
+
+.noData{
+    font-size: 40px;
+    font-weight: 600;
+    color: red;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.tool{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px;
+}

@@ -15,7 +15,6 @@ const NavigationSecond = ({searching,change}) => {
         setSearchQuery(value)
         console.log('[]', searchQuery)
         change(searchQuery)
-        
     }
     
   return (

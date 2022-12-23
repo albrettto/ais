@@ -8,6 +8,7 @@ import BookService from './API/BookService';
 import NavigationLeft from './components/NavigationLeft/NavigationLeft';
 import Loader from './components/Loader/Loader';
 import MainPage from './components/MainPage/MainPage';
+import { CartContext } from './context';
 
 
 function App() {
@@ -22,16 +23,17 @@ function App() {
   const [page, setPage] = useState('books')
   const [orders, setOrders] = useState([])
   const [isBooksLoading, setIsBooksLoading] = useState(false)
-
+  const [cart, setCart] = useState([])
 
   useEffect(() => {
     fetchBooks()
   }, [])
-  useEffect(() => {
+  
+  // useEffect(() => {
+  //   fetchBooks()
+  // }, [])
+   useEffect(() => {
     fetchOrders() 
-  }, [])
-  useEffect(() => {
-    fetchOrders()
   }, [])
   useEffect(() => {
     fetchAuthor()
@@ -81,7 +83,6 @@ function App() {
   async function fetchBooks(){
     const books = await BookService.getAll() 
     setBook(books.value)
-    console.log(books.value)
   }
 
   async function fetchGenres(){
@@ -100,11 +101,9 @@ function App() {
     const authors = await BookService.getAuthors()
     setAuthors(authorTransfer(authors.value))
   }
-
-
   async function fetchOrders(){
-    const orders = await BookService.getOrders()
-    setOrders(orders.value)
+    const ord = await BookService.getOrders()
+    setOrders(ord.value)
   }
 
   const addModAdd = () => {
@@ -118,6 +117,15 @@ function App() {
   const addBook = (newBook) => {
     setBook([...book, newBook])
     setAddModal(false)
+  }
+
+  const choosePage = (page) => {
+    setPage(page)
+  }
+
+  async function searchingBook(book) {
+    const books = await BookService.searchBooks(book)
+    setBook(books.value)
   }
 
   async function deleteBook(isbn) {
@@ -140,15 +148,6 @@ function App() {
       setBook([...book].sort((a, b) => a[sort].localeCompare(b[sort])))
   }
 
-  const choosePage = (page) => {
-    setPage(page)
-  }
-
-  async function searchingBook(book) {
-    const books = await BookService.searchBooks(book)
-    setBook(books.value)
-  }
-
   const search = (search) => {
     if (search === ''){
       fetchBooks()}
@@ -163,6 +162,9 @@ function App() {
 
 
   return (
+    <CartContext.Provider value={{
+      cart, setCart
+    }}>
     <div className="App">
       <NavigationFirst fbMod={addModFB} choosePage={choosePage}/>
       <NavigationSecond
@@ -181,6 +183,7 @@ function App() {
           sorting={sortFun}
           page={page}
           newOrder={orders}
+          genres={genres}
           />
         }
         
@@ -196,6 +199,7 @@ function App() {
         />
       <FeedbackModal modal={feedbackModal} setModal={setFeedbackModal}></FeedbackModal>
     </div>
+    </CartContext.Provider>
   );
 }
 

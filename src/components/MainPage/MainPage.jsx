@@ -17,6 +17,7 @@ const MainPage = (props) => {
                 remove={props.remove} 
                 newBook={props.newBook} 
                 sorting={props.sorting}
+                genres={props.genres}
             />
         else if(props.page === 'orders')
             return <Orders
