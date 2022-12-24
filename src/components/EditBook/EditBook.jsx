@@ -1,50 +1,51 @@
 import React, {useState} from 'react'
-import MyInput from '../UI/input/MyInput'
+import MyModal from '../UI/MyModal/MyModal'
 import MyButton from '../UI/button/MyButton'
+import MyInput from '../UI/input/MyInput'
 import Select from 'react-select'
-import cl from './AddBook.module.css'
-import BookService from '../../API/BookService'
+import cl from './EditBook.module.css'
+import BookService from '../../API/BookService';
 
-const AddBook = ({setModal, genres, publishers, bookFormats, authors, addBoo}) => {
+import {ReactComponent as CloseSVG} from '../../icons/close.svg'
 
-    const [selectedAuth, setSelectedAuth] = useState('')
-    const [selectedPubl, setSelectedPubl] = useState('')
-    const [selectedForm, setSelectedForm] = useState('')
-    const [selectedGenre, setSelectedGenre] = useState('')
-    const [book, setBook] = useState([])
+const EditBook = ({modal, setModal, genres, publishers, bookFormats, authors, props}) => {
 
-    const addNewBook = (e) => {
-        e.preventDefault() 
-        const newBook = {
-          publisherId: selectedPubl.value,
-          formatId: selectedForm.value,
-          genreId: selectedGenre.value,
-          authors: selectedAuth.map(author => {return author.value}),
-          ...book
-        }
-        console.log(selectedAuth)
-        createBook(newBook)
-        const nBook = {
-          publisherName: selectedPubl.label,
-          bookFormat: selectedForm.label,
-          genre: selectedGenre.label,
-          authors: selectedAuth.map(author => {return {lastName : author.label.split(' ')[0], firstName : author.label.split(' ')[1]}}),
-          ...book
-        }
-        addBoo(nBook)
-        setModal(false)
-      }
+  const [selectedAuth, setSelectedAuth] = useState('')
+  const [selectedPubl, setSelectedPubl] = useState('')
+  const [selectedForm, setSelectedForm] = useState('')
+  const [selectedGenre, setSelectedGenre] = useState('')
+  const [book, setBook] = useState([])
+  const [typeModal, setTypeModal] = useState('Книга')
 
-      async function createBook(book) {
-        await BookService.create(book)
-      }
+  const addNewBook = () => {
+    const newBook = {
+      publisherId: selectedPubl.value,
+      formatId: selectedForm.value,
+      genreId: selectedGenre.value,
+      authors: selectedAuth.map(author => {return author.value}),
+      ...book
+    }
+    
+    // setModal(false)
+  }
 
+  async function updateBook(book) {
+    await BookService.update(book)
+  }
+  
   return (
-        <div >
+        <MyModal visible={modal} setVisible={setModal}>
+          <div className={cl.row}>
+            <h2>Изменить книгу</h2>
+            <MyButton variant={typeModal} onClick={() => setModal(false)}>
+              <CloseSVG />
+            </MyButton>
+          </div>
+          <div >
             <p className={cl.m}>Название произведения</p>
           <MyInput
-            value={book.title}
-            onChange={e => setBook({...book, title: e.target.value})}
+            value={props.book.title}
+            onChange={e => setBook({...props.book, title: e.target.value})}
             type='text'
           />
 
@@ -80,8 +81,8 @@ const AddBook = ({setModal, genres, publishers, bookFormats, authors, addBoo}) =
 
           <p className={cl.m}>Дата публикации</p>
           <MyInput
-            value={book.publicationDate}
-            onChange={e => setBook({...book, publicationDate: e.target.value})}
+            value={props.book.publicationDate}
+            onChange={e => setBook({...props.book, publicationDate: e.target.value})}
             type='text'
           />
 
@@ -96,29 +97,30 @@ const AddBook = ({setModal, genres, publishers, bookFormats, authors, addBoo}) =
 
           <p className={cl.m}>ISBN</p>
           <MyInput
-            value={book.isbn}
-            onChange={e => setBook({...book, isbn: e.target.value})}
+            value={props.book.isbn}
+            onChange={e => setBook({...props.book, isbn: e.target.value})}
             type='text'
           />
 
           <p className={cl.m}>Количество</p>
           <MyInput
-            value={book.quantity}
-            onChange={e => setBook({...book, quantity: parseInt(e.target.value)})}
+            value={props.book.quantity}
+            onChange={e => setBook({...props.book, quantity: parseInt(e.target.value)})}
             type='number'
           />
 
           <p className={cl.m}>Цена</p>
           <MyInput
-            value={book.price}
-            onChange={e => setBook({...book, price: parseInt(e.target.value)})}
+            value={props.book.price}
+            onChange={e => setBook({...props.book, price: parseInt(e.target.value)})}
             type='number'
           />
           <div className={cl.m}>
             <MyButton variant={'btn'} onClick={addNewBook}>Сохранить</MyButton>
           </div>
         </div>
+        </MyModal>
   )
 }
 
-export default AddBook
+export default EditBook

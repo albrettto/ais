@@ -10,6 +10,9 @@ import Loader from './components/Loader/Loader';
 import MainPage from './components/MainPage/MainPage';
 import { CartContext } from './context';
 
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
 
 function App() {
 
@@ -115,6 +118,7 @@ function App() {
   }
 
   const addBook = (newBook) => {
+    console.log(newBook)
     setBook([...book, newBook])
     setAddModal(false)
   }
@@ -133,8 +137,12 @@ function App() {
   }
 
   const removeBook = (delBook) => {
+    const isDel = window.confirm("Вы точно хотите удалить книгу?");
+    if(!isDel) 
+      return
     setBook(book.filter(b => b.isbn !== delBook.isbn))
     deleteBook(delBook.isbn)
+    NotificationManager.success('Книга удалена', 'Успешно')
   }
 
   const sortFun = (sort) => {
@@ -189,7 +197,7 @@ function App() {
         
       </div>
       <AddModal 
-        create={addBook} 
+        addBoo={addBook} 
         modal={addModal} 
         setModal={setAddModal}
         genres={genres}

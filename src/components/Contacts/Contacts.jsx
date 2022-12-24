@@ -23,7 +23,6 @@ const Contacts = ({}) => {
                 </div>
                 <img src={TeaBag} alt="" className={cl.pic}/>
             </div>
-            <Loader width={100} height={100}/>
         </div>
   )
 }

@@ -18,7 +18,7 @@ const OrderCard = (props) => {
   return (
         <div className={cl.loc}>
           <h1 className={cl.title}>
-          Заказ от {props.order.purchaseDate.slice(0, 10)} 
+          Заказ от {props.order.purchaseDate.slice(0, 10)} {props.order.purchaseDate.slice(11, 19)} 
           </h1>
           {props.order.order_items.map(order =>
           <div className={cl.row}>

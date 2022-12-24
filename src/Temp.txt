@@ -1,47 +1,47 @@
 import React, {useState} from 'react'
-import MyInput from '../UI/input/MyInput'
+import MyModal from '../UI/MyModal/MyModal'
 import MyButton from '../UI/button/MyButton'
-import Select from 'react-select'
-import cl from './AddBook.module.css'
-import BookService from '../../API/BookService'
+import MyInput from '../UI/input/MyInput'
+import Select from "react-select";
+import cl from './AddModal.module.css'
+import BookService from '../../API/BookService';
 
-const AddBook = ({setModal, genres, publishers, bookFormats, authors, addBoo}) => {
+import {ReactComponent as CloseSVG} from '../../icons/close.svg'
 
-    const [selectedAuth, setSelectedAuth] = useState('')
-    const [selectedPubl, setSelectedPubl] = useState('')
-    const [selectedForm, setSelectedForm] = useState('')
-    const [selectedGenre, setSelectedGenre] = useState('')
-    const [book, setBook] = useState([])
+const AddModal = ({modal, setModal, genres, publishers, bookFormats, authors}) => {
 
-    const addNewBook = (e) => {
-        e.preventDefault() 
-        const newBook = {
-          publisherId: selectedPubl.value,
-          formatId: selectedForm.value,
-          genreId: selectedGenre.value,
-          authors: selectedAuth.map(author => {return author.value}),
-          ...book
-        }
-        console.log(selectedAuth)
-        createBook(newBook)
-        const nBook = {
-          publisherName: selectedPubl.label,
-          bookFormat: selectedForm.label,
-          genre: selectedGenre.label,
-          authors: selectedAuth.map(author => {return {lastName : author.label.split(' ')[0], firstName : author.label.split(' ')[1]}}),
-          ...book
-        }
-        addBoo(nBook)
-        setModal(false)
-      }
+  const [selectedAuth, setSelectedAuth] = useState('')
+  const [selectedPubl, setSelectedPubl] = useState('')
+  const [selectedForm, setSelectedForm] = useState('')
+  const [selectedGenre, setSelectedGenre] = useState('')
+  const [book, setBook] = useState([])
 
-      async function createBook(book) {
-        await BookService.create(book)
-      }
+  const addNewBook = () => {
+    const newBook = {
+      publisherId: selectedPubl.value,
+      formatId: selectedForm.value,
+      genreId: selectedGenre.value,
+      authors: selectedAuth.map(author => {return author.value}),
+      ...book
+    }
+    createBook(newBook)
+    setModal(false)
+  }
 
+  async function createBook(book) {
+    await BookService.create(book)
+  }
+  
   return (
-        <div >
-            <p className={cl.m}>Название произведения</p>
+        <MyModal visible={modal} setVisible={setModal}>
+          <div className={cl.row}>
+            <h2>Добавить книгу</h2>
+            <MyButton variant={'close'} onClick={() => setModal(false)}>
+              <CloseSVG />
+            </MyButton>
+          </div>
+
+          <p className={cl.m}>Название произведения</p>
           <MyInput
             value={book.title}
             onChange={e => setBook({...book, title: e.target.value})}
@@ -117,8 +117,8 @@ const AddBook = ({setModal, genres, publishers, bookFormats, authors, addBoo}) =
           <div className={cl.m}>
             <MyButton variant={'btn'} onClick={addNewBook}>Сохранить</MyButton>
           </div>
-        </div>
+        </MyModal>
   )
 }
 
-export default AddBook
+export default AddModal

@@ -39,7 +39,7 @@ const NavigationFirst = ({fbMod, choosePage}) => {
         <MyNav type={'first'}>
           <div className={cl.loc}>
             <div className={cl.lLoc}>
-              <MyButton variant={'navBtn'}>
+              <MyButton variant={'navBtn'} onClick={() =>choosePage('books')}>
                 <HomeSVG className={cl.icon}/>
               </MyButton>
               <MyButton variant={'navBtn'}>

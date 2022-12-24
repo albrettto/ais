@@ -75,5 +75,23 @@ export default class BookService {
     const response = await axios.put('http://localhost:5672/Order', orders)
     return response.data
   }
+
+  static async postAuthor(lastName, firstName) {
+    console.log(lastName, firstName)
+    const response = await axios.post('http://localhost:5672/Author/', firstName, '/', lastName)
+  }
+
+  static async postBookFormat(bookFormat) {
+    const response = await axios.post('http://localhost:5672/BookFormat/', bookFormat)
+  }
+
+  static async postGenre(genre) {
+    const response = await axios.post('http://localhost:5672/Genre/', genre)
+  }
+
+  static async postPublisher(publisher) {
+    const response = await axios.post('http://localhost:5672/Publisher/', publisher)
+  }
+
     
 }

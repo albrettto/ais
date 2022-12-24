@@ -40,9 +40,9 @@ const Books = ({addMod, newBook, remove, sorting, genres}) => {
                             ]}
                         />
                     </div>
-                    <MyButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                    {/* <MyButton onClick={() => setIsCollapsed(!isCollapsed)}>
                         <FilterSVG className={cl.icon}/>
-                    </MyButton>
+                    </MyButton> */}
                 </div>
             </div>
             {!isCollapsed && (

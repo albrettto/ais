@@ -25,12 +25,9 @@ const NavigationSecond = ({searching,change}) => {
                     <MyInput 
                     value={searchQuery}
                     onChange={e => changeSearch(e.target.value)}
-                    // onFocus={e => changeSearch()}
                     type='search' 
                     variant={'search'}/>
                     <MyButton variant={'searchBtn'} onClick={() => searching(searchQuery)}>ПОИСК</MyButton>
-                    {/* <MyButton variant={'searchBtn'} onClick={() => fun()}>ПОИСК</MyButton> */}
-                    
                 </div>
             </div>
         </MyNav>

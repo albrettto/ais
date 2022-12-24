@@ -36,7 +36,7 @@ const MainPage = (props) => {
     }
 
     return (
-        <div className={cl}>
+        <div className={cl.page}>
             {choosePage()}
         </div>
   )

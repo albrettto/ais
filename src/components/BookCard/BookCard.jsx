@@ -7,7 +7,14 @@ import {ReactComponent as EditSVG} from '../../icons/edit.svg'
 import {ReactComponent as DeleteSVG} from '../../icons/delete.svg'
 
 import {CartContext} from '../../context/index'
+import EditBook from '../EditBook/EditBook'
 const BookCard = (props) => {
+
+    function editBook(book){
+        props.setModal(true)
+        return <EditBook book={book} />
+    }
+
     const {cart, setCart} = useContext(CartContext)
   return (
         <div className={cl.row}>
@@ -34,9 +41,9 @@ const BookCard = (props) => {
                         {title:props.book.title, isbn:props.book.isbn, price:props.book.price, quantity:1}])
                     }/>
             </MyButton>
-            <MyButton>
+            {/* <MyButton onClick={() => editBook(props.book)}>
                 <EditSVG className={cl.icon}/>
-            </MyButton>
+            </MyButton> */}
             <MyButton onClick={() => props.remove(props.book)}>
                 <DeleteSVG className={cl.icon}/>
             </MyButton>
