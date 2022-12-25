@@ -18,6 +18,7 @@ const MainPage = (props) => {
                 newBook={props.newBook} 
                 sorting={props.sorting}
                 genres={props.genres}
+                searchingItem={props.searchingItem}
             />
         else if(props.page === 'orders')
             return <Orders

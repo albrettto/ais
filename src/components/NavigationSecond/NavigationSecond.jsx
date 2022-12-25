@@ -9,12 +9,10 @@ const NavigationSecond = ({searching,change}) => {
     const [searchQuery, setSearchQuery] = useState('')
 
     function changeSearch(val){
-        console.log('()',val)
+        console.log(val)
         setSearchQuery(val)
-        var value = val + ''
-        setSearchQuery(value)
-        console.log('[]', searchQuery)
-        change(searchQuery)
+        console.log(val)
+        change(val)
     }
     
   return (

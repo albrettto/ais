@@ -7,6 +7,7 @@ import {ReactComponent as BooksSVG} from '../../icons/books.svg'
 
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Select from "react-select";
+import Loader from '../Loader/Loader';
 
 const Forecasts = ({books}) => {
 
@@ -14,11 +15,14 @@ const Forecasts = ({books}) => {
     const [book, setBook] = React.useState([])
     const [selectedOptions, setSelectedOptions] = useState();
     const [date, setDate] = React.useState('')
+    const [isLoading, setIsLoading] = React.useState(false)
     
 
     async function fetchForecast(isbn, date){
+        setIsLoading(true)
         const forc = await BookService.getForecasts(isbn, date)
         setForecast(transformDate(forc.value))
+        setIsLoading(false)
     }
 
     function getBooks(){
@@ -95,12 +99,16 @@ const Forecasts = ({books}) => {
                 <MyButton variant={'result'} onClick={() => fetchForecast(selectedOptions.value, date)}>Получить прогноз</MyButton>
             </div>
                 {
+                  isLoading
+                  ?
+                  <Loader height={250} width={250}/>
+                  :
                     forecast != null 
                     ?
                         forecast[forecast.length-1].forecastedValues != 0
                         ?
                         <BarChart
-                            width={1700}
+                            width={1400}
                             height={700}
                             data={forecast}
                             margin={{

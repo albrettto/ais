@@ -20,8 +20,9 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
 
-const NavigationFirst = ({fbMod, choosePage}) => {
-  const [visible, setVisible] = useState(false)
+const NavigationFirst = ({fbMod, choosePage, setb}) => {
+
+    const [visible, setVisible] = useState(false)
   const {cart, setCart} = useContext(CartContext)
 
   function createOrder(){
@@ -30,9 +31,15 @@ const NavigationFirst = ({fbMod, choosePage}) => {
       ord.push({isbn: item.isbn, quantity: item.quantity})})
     const orders = { "orders" : ord }
     BookService.putOrder(orders)
+    getAllBooks()
     setCart([])
     setVisible(false)
     NotificationManager.success('Заказ оформлен', 'Успешно', 2000);
+  }
+  async function getAllBooks(){
+    const books = await BookService.getAll() 
+    console.log(books.value)
+    setb(books.value)
   }
 
   return (

@@ -27,29 +27,35 @@ function App() {
   const [orders, setOrders] = useState([])
   const [isBooksLoading, setIsBooksLoading] = useState(false)
   const [cart, setCart] = useState([])
+  const [searchingItem, setSearchingItem] = useState('')
 
   useEffect(() => {
     fetchBooks()
   }, [])
+
+  // useEffect(() => {
+  //   fetchBooks()
+  // }, [searchingItem])
   
   // useEffect(() => {
   //   fetchBooks()
   // }, [])
+
    useEffect(() => {
     fetchOrders() 
-  }, [])
+  }, [orders])
   useEffect(() => {
     fetchAuthor()
-  }, [])
+  }, [authors])
   useEffect(() => {
     fetchBookFormat()
-  }, [])
+  }, [bookFormats])
   useEffect(() => {
     fetchPublisher()
-  }, [])
+  }, [publishers])
   useEffect(() => {
     fetchGenres()
-  }, [])
+  }, [genres])
 
   function genTransfer (genres){
     const gen = []
@@ -129,7 +135,7 @@ function App() {
 
   async function searchingBook(book) {
     const books = await BookService.searchBooks(book)
-    setBook(books.value)
+    setSearchingItem(books.value)
   }
 
   async function deleteBook(isbn) {
@@ -158,15 +164,22 @@ function App() {
 
   const search = (search) => {
     if (search === ''){
-      fetchBooks()}
+      fetchBooks()
+      setSearchingItem('')}
     else{
       searchingBook(search)
       }
     }
 
-    const changeSearch = (query) =>{
-       fetchBooks() 
+  const changeSearch = (query) =>{
+    if (query === ''){
+      fetchBooks() 
+      setSearchingItem('')
     }
+  }
+  const setb = (b) => {
+    setBook(b)
+  }
 
 
   return (
@@ -174,7 +187,7 @@ function App() {
       cart, setCart
     }}>
     <div className="App">
-      <NavigationFirst fbMod={addModFB} choosePage={choosePage}/>
+      <NavigationFirst fbMod={addModFB} choosePage={choosePage} setb={setb}/>
       <NavigationSecond
         searching={search}
         change={changeSearch}
@@ -192,6 +205,7 @@ function App() {
           page={page}
           newOrder={orders}
           genres={genres}
+          searchingItem={searchingItem}
           />
         }
         
